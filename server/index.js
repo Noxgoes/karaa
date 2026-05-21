@@ -41,6 +41,7 @@ app.get('/api/metadata', async (req, res) => {
 // Routes
 app.use('/api/lyrics', lyricsRouter);
 app.use('/api/audio', audioRouter);
+app.use('/api/transcribe', (await import('./routes/transcribe.js')).default);
 
 // Serve static files from React build directory
 const clientBuildPath = path.join(__dirname, '../client/dist');

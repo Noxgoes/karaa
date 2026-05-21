@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppStore } from '../store/appStore';
-import { alignLyrics, parseLrc, alignLyricsToLrc } from '../utils/alignUtils';
+import { addPitchToLyrics } from '../utils/alignUtils';
 
 export function usePitchExtraction() {
   const [progress, setProgress] = useState(0);
@@ -27,51 +27,11 @@ export function usePitchExtraction() {
       const sampleRate = audioBuffer.sampleRate;
       const notes = await mockPitchDetect(mono, sampleRate);
 
-      // ── Step 3: Metadata Fetch (Backup) ──────────────────────────────────
-      const { song, artist, syncedLyrics: storedSynced, lyrics: originalLyrics } = useAppStore.getState();
-      let syncedLyrics = storedSynced;
-
-      if (!syncedLyrics && song) {
-        try {
-          let finalArtist = artist || '';
-          let finalSong = song || '';
-          const targetDuration = Math.floor(audioBuffer.duration);
-          let resData = null;
-
-          if (finalArtist) {
-            try {
-              const params = new URLSearchParams({ artist_name: finalArtist, track_name: finalSong, duration: targetDuration.toString() });
-              const res = await fetch(`https://lrclib.net/api/get?${params}`);
-              if (res.ok) resData = await res.json();
-            } catch (e) {}
-          }
-
-          if (!resData || !resData.syncedLyrics) {
-            const searchRes = await fetch(`https://lrclib.net/api/search?q=${encodeURIComponent(finalSong)}`);
-            if (searchRes.ok) {
-              const results = await searchRes.json();
-              const bestMatch = results
-                .filter(r => r.syncedLyrics)
-                .sort((a, b) => Math.abs(a.duration - targetDuration) - Math.abs(b.duration - targetDuration))[0];
-              
-              if (bestMatch) {
-                resData = bestMatch;
-              }
-            }
-          }
-
-          if (resData && resData.syncedLyrics) {
-            syncedLyrics = resData.syncedLyrics;
-          }
-        } catch (e) { console.warn('[PitchExtraction] Backup LRC fetch failed:', e.message); }
-      }
-
-      const lrcLines = syncedLyrics ? parseLrc(syncedLyrics) : null;
-
-      // ── Step 4: ALIGNMENT ──────────────────────────────────────────────
-      const alignedLyrics = lrcLines 
-        ? alignLyricsToLrc(originalLyrics, lrcLines, notes)
-        : alignLyrics(originalLyrics, notes, audioBuffer.duration);
+      // ── Step 3: ALIGNMENT ──────────────────────────────────────────────
+      // Since we now use Whisper, we already have exact startMs/endMs for every word.
+      // We just need to find the median pitch note during each word's time window.
+      const { lyrics: whisperLyrics } = useAppStore.getState();
+      const alignedLyrics = whisperLyrics ? addPitchToLyrics(whisperLyrics, notes) : [];
 
       // ── Step 5: COMMIT ──────────────────────────────────────────────────
       useAppStore.setState({

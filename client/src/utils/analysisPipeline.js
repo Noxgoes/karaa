@@ -26,15 +26,43 @@ export async function runAnalysisPipeline({ navigate, extractPitch }) {
     return;
   }
 
-  const performLyricsFetch = async (currentSong, currentArtist, duration, signal) => {
-    setAnalysisStep('fetching-lyrics');
-    let url = `${apiUrl}/api/lyrics?q=${encodeURIComponent(currentSong)}&artist=${encodeURIComponent(currentArtist || '')}`;
-    if (duration) url += `&duration=${Math.round(duration)}`;
-    const response = await fetch(url, { signal });
+  const performTranscription = async (audioData, filename, signal) => {
+    setAnalysisStep('transcribing-audio');
+    const formData = new FormData();
+    const blob = new Blob([audioData]);
+    formData.append('audio', blob, filename);
+
+    const response = await fetch(`${apiUrl}/api/transcribe`, {
+      method: 'POST',
+      body: formData,
+      signal
+    });
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Failed to fetch lyrics');
-    setLyrics(data);
-    return data;
+    if (!response.ok) throw new Error(data.error || 'Failed to transcribe audio');
+    
+    // Group words into lines based on pauses > 0.8 seconds OR max 4 words per line to keep it extremely spacious
+    let currentLine = 0;
+    let wordsInCurrentLine = 0;
+    const words = (data.words || []).map((w, index, arr) => {
+      const isPause = index > 0 && (w.start - arr[index - 1].end > 0.8);
+      const isTooLong = wordsInCurrentLine >= 4; // Max 4 words per line
+      if (index > 0 && (isPause || isTooLong)) {
+        currentLine++;
+        wordsInCurrentLine = 0;
+      }
+      wordsInCurrentLine++;
+      return {
+        word: w.word.trim(),
+        lineIndex: currentLine,
+        wordIndex: index,
+        startMs: w.start * 1000,
+        endMs: w.end * 1000,
+        confidence: w.probability || 1.0
+      };
+    });
+
+    setLyrics(words);
+    return words;
   };
 
   _abortController = new AbortController();
@@ -149,14 +177,15 @@ export async function runAnalysisPipeline({ navigate, extractPitch }) {
     setAnalysisStep('extracting-pitch');
     const audioContext = getAudioContext();
     if (audioContext.state === 'suspended') await audioContext.resume();
-    const audioBuffer = await audioContext.decodeAudioData(audioData);
+    const audioBuffer = await audioContext.decodeAudioData(audioData.slice(0));
     setAudioBuffer(audioBuffer);
 
-    // 2. Fetch lyrics and metadata concurrently
-    setAnalysisStep('fetching-lyrics');
+    // 2. Transcribe and extract pitch concurrently
+    setAnalysisStep('transcribing-audio');
+    const filename = audioFile ? audioFile.name : 'audio.m4a';
 
-    const lyricsPromise = performLyricsFetch(song, artist, audioBuffer.duration, signal).then(data => {
-      console.log(`%c[LYRIC SOURCE] Lyrics retrieved successfully`, 'color: #7c3aed; font-weight: bold; background: #f3f0ff; padding: 2px 6px; border-radius: 4px;');
+    const lyricsPromise = performTranscription(audioData, filename, signal).then(data => {
+      console.log(`%c[GROQ WHISPER] Transcribed successfully`, 'color: #7c3aed; font-weight: bold; background: #f3f0ff; padding: 2px 6px; border-radius: 4px;');
       return data;
     });
     
