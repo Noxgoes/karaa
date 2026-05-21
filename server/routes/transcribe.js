@@ -46,6 +46,7 @@ router.post('/', upload.single('audio'), async (req, res) => {
     const transcription = await groq.audio.transcriptions.create({
       file: fs.createReadStream(tempFilePath),
       model: "whisper-large-v3",
+      language: "hi",
       response_format: "verbose_json",
       timestamp_granularities: ["word"]
     });

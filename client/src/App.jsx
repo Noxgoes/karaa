@@ -142,13 +142,6 @@ function HeroNav({ onHowToClick, onLogoClick }) {
       cover: '/presets/pashmina.jpg',
       fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
       preset: 'pashmina.mp3'
-    },
-    {
-      title: 'Ajib Dastan Hai Yeh',
-      artist: 'Lata Mangeshkar',
-      cover: '/presets/ajeeb_dastan.jpg',
-      fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a3/93/29/a39329fc-0775-6902-15f1-34444585fdf2/8902894101967_cover.jpg/120x120bb.jpg',
-      preset: 'ajib.mp3'
     }
   ];
 
@@ -585,13 +578,6 @@ function StudioPage() {
                 cover: '/presets/pashmina.jpg',
                 fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
                 preset: 'pashmina.mp3'
-              },
-              {
-                title: 'Ajeeb Dastan Hai Yeh',
-                artist: 'Lata Mangeshkar',
-                cover: '/presets/ajeeb_dastan.jpg',
-                fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a3/93/29/a39329fc-0775-6902-15f1-34444585fdf2/8902894101967_cover.jpg/120x120bb.jpg',
-                preset: 'ajib_dastan_hai_ye-lata mangeshkar.mp3'
               }
             ].map((track, i) => (
               <button
