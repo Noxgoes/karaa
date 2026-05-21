@@ -14,22 +14,22 @@ import { usePitchExtraction } from './hooks/usePitchExtraction';
 
 // ── Album card data ────────────────────────────────────────────────────────
 const ALBUM_CARDS = [
-  { id: 'starboy',   src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/600x600bb.jpg', w: 160, top: '7%',  left: '4%',   rot: -12, blur: 0,   opacity: 1,   float: 'a' },
-  { id: 'ts1989',    src: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/4a/4a/894a4ab9-b0b0-9ea5-ca41-8da0b9b79453/14UMDIM03405.rgb.jpg/600x600bb.jpg', w: 130, top: '12%', left: '17%',  rot: 8,   blur: 0,   opacity: 1,   float: 'b' },
-  { id: 'divide',    src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg', w: 155, top: '30%', left: '13%',  rot: -6,  blur: 0,   opacity: 1,   float: 'a' },
-  { id: 'yjhd',      src: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg', w: 120, top: '16%', left: '1%',   rot: 14,  blur: 1.5, opacity: 0.7, float: 'b' },
-  { id: 'kabirsingh',src: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f6/70/84/f6708434-0123-ff36-0ac3-7401e8cf0f94/8902894360807_cover.jpg/600x600bb.jpg', w: 125, top: '56%', left: '3%',   rot: -10, blur: 0,   opacity: 1,   float: 'a' },
-  { id: 'adele21',   src: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg', w: 140, top: '73%', left: '1%',   rot: 6,   blur: 0,   opacity: 1,   float: 'b' },
-  { id: 'okcomputer',src: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/07/60/ba/0760ba0f-148c-b18f-d0ff-169ee96f3af5/634904078164.png/600x600bb.jpg', w: 130, top: '76%', left: '18%',  rot: -8,  blur: 0,   opacity: 1,   float: 'a' },
-  { id: '3idiots',   src: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6e/99/7c/6e997cb1-1d80-3dc1-121d-53919ccace52/840214403941.png/600x600bb.jpg', w: 145, top: '6%',  left: '54%',  rot: 10,  blur: 0,   opacity: 1,   float: 'b' },
-  { id: 'rockstar',  src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/ac/41/56ac41f7-99f3-3eae-3b07-443167292c4e/8902894697408_cover.jpg/600x600bb.jpg', w: 130, top: '14%', left: '70%',  rot: -14, blur: 0,   opacity: 1,   float: 'a' },
-  { id: 'thriller',  src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/4f/fd/324ffda2-9e51-8f6a-0c2d-c6fd2b41ac55/074643811224.jpg/600x600bb.jpg', w: 105, top: '8%',  left: '88%',  rot: 12,  blur: 1.5, opacity: 0.65,float: 'b' },
-  { id: 'znmd',      src: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b0/3f/4c/b03f4cca-8a6a-f506-4490-3263b4fb620c/8902894696296_cover.jpg/600x600bb.jpg', w: 120, top: '28%', left: '84%',  rot: -8,  blur: 0,   opacity: 1,   float: 'a' },
-  { id: 'future',    src: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/e9/c5/a8/e9c5a8a0-d698-137b-2e85-cf3a8d9548f8/190295303372.jpg/600x600bb.jpg', w: 148, top: '48%', left: '76%',  rot: 6,   blur: 0,   opacity: 1,   float: 'b' },
-  { id: 'gullyboy',  src: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/5e/60/3a5e6034-8755-f0bf-d4f0-c7f96d3b45bb/8718857674948.png/600x600bb.jpg', w: 140, top: '68%', left: '82%',  rot: -10, blur: 0,   opacity: 1,   float: 'a' },
-  { id: 'damn',      src: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ab/16/ef/ab16efe9-e7f1-66ec-021c-5592a23f0f9e/17UMGIM88793.rgb.jpg/600x600bb.jpg', w: 130, top: '70%', left: '67%',  rot: 14,  blur: 0,   opacity: 1,   float: 'b' },
-  { id: 'abbey',     src: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/600x600bb.jpg', w: 120, top: '82%', left: '35%',  rot: 8,   blur: 0,   opacity: 1,   float: 'b' },
-  { id: 'dilse',     src: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg', w: 90,  top: '4%',  left: '37%',  rot: -16, blur: 3,   opacity: 0.5, float: 'a' },
+  { id: 'starboy', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/600x600bb.jpg', w: 160, top: '7%', left: '4%', rot: -12, blur: 0, opacity: 1, float: 'a' },
+  { id: 'ts1989', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/4a/4a/894a4ab9-b0b0-9ea5-ca41-8da0b9b79453/14UMDIM03405.rgb.jpg/600x600bb.jpg', w: 130, top: '12%', left: '17%', rot: 8, blur: 0, opacity: 1, float: 'b' },
+  { id: 'divide', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/600x600bb.jpg', w: 155, top: '30%', left: '13%', rot: -6, blur: 0, opacity: 1, float: 'a' },
+  { id: 'yjhd', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/62/d6/74/62d67432-0670-631f-db6a-d4bac3adae4b/8902894353328_cover.jpg/600x600bb.jpg', w: 120, top: '16%', left: '1%', rot: 14, blur: 1.5, opacity: 0.7, float: 'b' },
+  { id: 'kabirsingh', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f6/70/84/f6708434-0123-ff36-0ac3-7401e8cf0f94/8902894360807_cover.jpg/600x600bb.jpg', w: 125, top: '56%', left: '3%', rot: -10, blur: 0, opacity: 1, float: 'a' },
+  { id: 'adele21', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/ca/25/ebca2596-cd1e-b295-91a3-771c868d0a79/191404113868.png/600x600bb.jpg', w: 140, top: '73%', left: '1%', rot: 6, blur: 0, opacity: 1, float: 'b' },
+  { id: 'okcomputer', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/07/60/ba/0760ba0f-148c-b18f-d0ff-169ee96f3af5/634904078164.png/600x600bb.jpg', w: 130, top: '76%', left: '18%', rot: -8, blur: 0, opacity: 1, float: 'a' },
+  { id: '3idiots', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/6e/99/7c/6e997cb1-1d80-3dc1-121d-53919ccace52/840214403941.png/600x600bb.jpg', w: 145, top: '6%', left: '54%', rot: 10, blur: 0, opacity: 1, float: 'b' },
+  { id: 'rockstar', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/56/ac/41/56ac41f7-99f3-3eae-3b07-443167292c4e/8902894697408_cover.jpg/600x600bb.jpg', w: 130, top: '14%', left: '70%', rot: -14, blur: 0, opacity: 1, float: 'a' },
+  { id: 'thriller', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/4f/fd/324ffda2-9e51-8f6a-0c2d-c6fd2b41ac55/074643811224.jpg/600x600bb.jpg', w: 105, top: '8%', left: '88%', rot: 12, blur: 1.5, opacity: 0.65, float: 'b' },
+  { id: 'znmd', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b0/3f/4c/b03f4cca-8a6a-f506-4490-3263b4fb620c/8902894696296_cover.jpg/600x600bb.jpg', w: 120, top: '28%', left: '84%', rot: -8, blur: 0, opacity: 1, float: 'a' },
+  { id: 'future', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/e9/c5/a8/e9c5a8a0-d698-137b-2e85-cf3a8d9548f8/190295303372.jpg/600x600bb.jpg', w: 148, top: '48%', left: '76%', rot: 6, blur: 0, opacity: 1, float: 'b' },
+  { id: 'gullyboy', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/5e/60/3a5e6034-8755-f0bf-d4f0-c7f96d3b45bb/8718857674948.png/600x600bb.jpg', w: 140, top: '68%', left: '82%', rot: -10, blur: 0, opacity: 1, float: 'a' },
+  { id: 'damn', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ab/16/ef/ab16efe9-e7f1-66ec-021c-5592a23f0f9e/17UMGIM88793.rgb.jpg/600x600bb.jpg', w: 130, top: '70%', left: '67%', rot: 14, blur: 0, opacity: 1, float: 'b' },
+  { id: 'abbey', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/600x600bb.jpg', w: 120, top: '82%', left: '35%', rot: 8, blur: 0, opacity: 1, float: 'b' },
+  { id: 'dilse', src: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/f8/85/8ef88544-a6c7-018b-0a75-dc3b6b024fa0/cover.jpg/600x600bb.jpg', w: 90, top: '4%', left: '37%', rot: -16, blur: 3, opacity: 0.5, float: 'a' },
 ];
 
 function AlbumScatter() {
@@ -68,32 +68,126 @@ function KaraLogo({ onClick }) {
       onClick={onClick}
       style={{
         background: 'none', border: 'none', cursor: 'pointer',
+        padding: 0, userSelect: 'none',
+        display: 'flex', alignItems: 'center', gap: '8px'
+      }}
+      aria-label="Go to homepage"
+    >
+      <img
+        src="/karama.png"
+        alt="Kara"
+        style={{ height: '32px', width: 'auto', borderRadius: '8px' }}
+      />
+      <span style={{
         fontFamily: "'Playfair Display', Georgia, serif",
         fontWeight: 800, fontSize: 22,
         color: 'var(--text-primary)',
         letterSpacing: '-0.03em',
-        display: 'flex', alignItems: 'center', gap: 2,
-        padding: 0,
-        userSelect: 'none',
-      }}
-      aria-label="Go to homepage"
-    >
-      kara<span style={{ color: 'var(--star)', fontSize: 14, verticalAlign: 'super', marginLeft: 1 }}>✦</span>
+        display: 'flex', alignItems: 'center'
+      }}>
+        kara<span style={{ color: 'var(--star)', fontSize: 14, verticalAlign: 'super', marginLeft: 1 }}>✦</span>
+      </span>
     </button>
   );
 }
 
 // ── Navigation bars ────────────────────────────────────────────────────────
 function HeroNav({ onHowToClick, onLogoClick }) {
+  const navigate = useNavigate();
+  const { extractPitch } = usePitchExtraction();
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+  const dropdownRef = React.useRef(null);
+
+  // Close dropdown on click outside
+  React.useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelectPreset = async (track) => {
+    setIsDropdownOpen(false);
+    useAppStore.setState({
+      song: track.title,
+      artist: track.artist,
+      audioSourceTab: 'preset',
+      presetPath: `/presets/${track.preset}`,
+      albumArt: track.cover,
+      error: null
+    });
+    // Check if local image exists, if not set albumArt to fallback
+    const img = new Image();
+    img.src = track.cover;
+    img.onerror = () => {
+      useAppStore.setState({ albumArt: track.fallbackCover.replace('120x120bb', '600x600bb') });
+    };
+    runAnalysisPipeline({ navigate, extractPitch });
+  };
+
+  const presetSongs = [
+    {
+      title: 'Kesariya',
+      artist: 'Arijit Singh',
+      cover: '/presets/kesariya.jpg',
+      fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/37/1b/09/371b09fa-7e44-adbf-939e-d309cb9f3f4c/8902894363235_cover.jpg/120x120bb.jpg',
+      preset: 'kesariya.mp3'
+    },
+    {
+      title: 'Pashmina',
+      artist: 'Amit Trivedi',
+      cover: '/presets/pashmina.jpg',
+      fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
+      preset: 'pashmina.mp3'
+    },
+    {
+      title: 'Yeh Fitoor Mera',
+      artist: 'Amit Trivedi',
+      cover: '/presets/yeh_fitoor_mera.jpg',
+      fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
+      preset: 'yeh_fitoor_mera.mp3'
+    }
+  ];
+
   return (
     <nav className="kara-nav">
       <KaraLogo onClick={onLogoClick} />
 
-      <div className="nav-search">
-        <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <input type="text" placeholder="Search songs, artists, albums…" aria-label="Search" />
+      <div
+        className="nav-links"
+        style={{
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          gap: '4px',
+          alignItems: 'center',
+          background: 'rgba(0,0,0,0.04)',
+          padding: '4px',
+          borderRadius: '100px'
+        }}
+      >
+        <button
+          onClick={() => navigate('/')}
+          className="nav-hover-btn"
+        >
+          Home
+        </button>
+        <button
+          onClick={() => navigate('/about')}
+          className="nav-hover-btn"
+        >
+          About
+        </button>
+        <button
+          onClick={() => navigate('/contact')}
+          className="nav-hover-btn"
+        >
+          Contact Us
+        </button>
       </div>
 
       <div className="nav-auth">
@@ -102,7 +196,7 @@ function HeroNav({ onHowToClick, onLogoClick }) {
           className="btn-login"
           style={{ display: 'flex', alignItems: 'center', gap: 6 }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
           How to use
         </button>
         <button className="btn-login">Log in</button>
@@ -123,7 +217,7 @@ function StudioNav({ onHowToClick, onHome }) {
           className="btn-login"
           style={{ display: 'flex', alignItems: 'center', gap: 6 }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
           How to use
         </button>
       </div>
@@ -162,7 +256,7 @@ function PlayerNav({ song, artist, onExit, accuracyScore }) {
             onMouseEnter={e => { e.currentTarget.style.background = '#E0D8CC'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'var(--surface)'; }}
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
             How to use
           </button>
 
@@ -227,13 +321,132 @@ function PlayerNav({ song, artist, onExit, accuracyScore }) {
 
 // ── Pages ──────────────────────────────────────────────────────────────────
 
+function AboutPage() {
+  const navigate = useNavigate();
+  const setIsHowToOpen = useAppStore(state => state.setIsHowToOpen);
+
+  return (
+    <>
+      <HeroNav
+        onHowToClick={() => setIsHowToOpen(true)}
+        onLogoClick={() => navigate('/')}
+      />
+      <div style={{
+        minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px',
+        background: 'var(--bg)', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', gap: 32, padding: '120px 24px 60px'
+      }}>
+        <div className="hero-center fade-in-up" style={{ maxWidth: 660, width: '100%' }}>
+          <div className="hero-badge">
+            <span className="badge-star">✦</span>
+            About Kara
+          </div>
+          <h2 className="hero-title" style={{ fontSize: 'clamp(32px, 5vw, 48px)', marginBottom: '24px' }}>
+            Built by a student, for the love of music.
+          </h2>
+          <div style={{
+            background: 'var(--surface)',
+            border: '0.5px solid var(--border)',
+            borderRadius: '24px',
+            padding: '40px',
+            textAlign: 'left',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.03)'
+          }}>
+            <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'var(--text-primary)', fontFamily: "'Inter', sans-serif", marginBottom: '20px' }}>
+              Hi! I'm an indie dev and student who loves both coding and karaoke. I built Kara as a passion project because I wanted a more intuitive way to see the melody and pitch of my favorite songs.
+            </p>
+            <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'var(--text-primary)', fontFamily: "'Inter', sans-serif", marginBottom: '20px' }}>
+              Often, reading lyrics isn't enough to capture the emotion and timing of a song. By mapping out the pitch and visualizing the highs and lows, Kara acts as a musical guide to help you sing along perfectly.
+            </p>
+            <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'var(--text-primary)', fontFamily: "'Inter', sans-serif", marginBottom: '20px' }}>
+              This project is powered by React, Web Audio API, and a whole lot of coffee. ☕
+            </p>
+            <div style={{ display: 'flex', gap: '16px', marginTop: '32px' }}>
+              <button className="btn-cta" onClick={() => navigate('/studio')} style={{ padding: '12px 24px', fontSize: '14px' }}>
+                Try Kara Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function ContactPage() {
+  const navigate = useNavigate();
+  const setIsHowToOpen = useAppStore(state => state.setIsHowToOpen);
+
+  return (
+    <>
+      <HeroNav
+        onHowToClick={() => setIsHowToOpen(true)}
+        onLogoClick={() => navigate('/')}
+      />
+      <div style={{
+        minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px',
+        background: 'var(--bg)', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', gap: 32, padding: '120px 24px 60px'
+      }}>
+        <div className="hero-center fade-in-up" style={{ maxWidth: 660, width: '100%' }}>
+          <div className="hero-badge">
+            <span className="badge-star">✦</span>
+            Get in Touch
+          </div>
+          <h2 className="hero-title" style={{ fontSize: 'clamp(32px, 5vw, 48px)', marginBottom: '24px' }}>
+            Say Hello!
+          </h2>
+          <div style={{
+            background: 'var(--surface)',
+            border: '0.5px solid var(--border)',
+            borderRadius: '24px',
+            padding: '40px',
+            textAlign: 'left',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.03)'
+          }}>
+            <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'var(--text-primary)', fontFamily: "'Inter', sans-serif", marginBottom: '32px' }}>
+              Whether you have feedback, found a bug, or just want to chat about indie development, I'd love to hear from you.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <a href="mailto:hello@kara.app" style={{
+                display: 'flex', alignItems: 'center', gap: '16px', textDecoration: 'none',
+                color: 'var(--text-primary)', background: 'var(--bg)', padding: '16px 20px', borderRadius: '16px', border: '0.5px solid var(--border)'
+              }}>
+                <span style={{ fontSize: '20px' }}>✉️</span>
+                <span style={{ fontSize: '15px', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>hello@kara.app</span>
+              </a>
+              <a href="https://github.com/indiedev" target="_blank" rel="noreferrer" style={{
+                display: 'flex', alignItems: 'center', gap: '16px', textDecoration: 'none',
+                color: 'var(--text-primary)', background: 'var(--bg)', padding: '16px 20px', borderRadius: '16px', border: '0.5px solid var(--border)'
+              }}>
+                <span style={{ fontSize: '20px' }}>🐙</span>
+                <span style={{ fontSize: '15px', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>GitHub</span>
+              </a>
+              <a href="https://twitter.com/indiedev" target="_blank" rel="noreferrer" style={{
+                display: 'flex', alignItems: 'center', gap: '16px', textDecoration: 'none',
+                color: 'var(--text-primary)', background: 'var(--bg)', padding: '16px 20px', borderRadius: '16px', border: '0.5px solid var(--border)'
+              }}>
+                <span style={{ fontSize: '20px' }}>🐦</span>
+                <span style={{ fontSize: '15px', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>Twitter / X</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Pages ──────────────────────────────────────────────────────────────────
+
 function HeroPage() {
   const navigate = useNavigate();
   const setIsHowToOpen = useAppStore(state => state.setIsHowToOpen);
 
   return (
     <>
-      <HeroNav 
+      <HeroNav
         onHowToClick={() => setIsHowToOpen(true)}
         onLogoClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       />
@@ -245,7 +458,7 @@ function HeroPage() {
             Sing. Feel. Express.
           </div>
           <h1 className="hero-title fade-in-up fade-in-up-d2">
-            Your stage.<br/>Your song.
+            Your stage.<br />Your song.
           </h1>
           <p className="hero-sub fade-in-up fade-in-up-d3">
             Karaoke your favorites.<br />Anytime, anywhere.
@@ -258,7 +471,7 @@ function HeroPage() {
             <div className="feature-pill">
               <div className="feature-icon-wrap">
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+                  <path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" />
                 </svg>
               </div>
               <span className="feature-label">Trending Songs</span>
@@ -266,7 +479,7 @@ function HeroPage() {
             <div className="feature-pill">
               <div className="feature-icon-wrap">
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/>
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" /><circle cx="12" cy="12" r="4" />
                 </svg>
               </div>
               <span className="feature-label">Ai Pitch Guide</span>
@@ -274,7 +487,7 @@ function HeroPage() {
             <div className="feature-pill">
               <div className="feature-icon-wrap">
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                 </svg>
               </div>
               <span className="feature-label">Real-time Score</span>
@@ -323,12 +536,12 @@ function StudioPage() {
         <div className="fade-in-up fade-in-up-d3" style={{ width: '100%', maxWidth: 580, padding: '0 20px', marginTop: -8 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 16 }}>
             <span style={{ color: 'var(--star)', fontSize: 12 }}>✦</span>
-            <p style={{ 
-              fontSize: 11, 
-              color: 'var(--text-muted)', 
-              fontFamily: 'Inter, sans-serif', 
-              fontWeight: 600, 
-              textTransform: 'uppercase', 
+            <p style={{
+              fontSize: 11,
+              color: 'var(--text-muted)',
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 600,
+              textTransform: 'uppercase',
               letterSpacing: '0.08em',
               margin: 0
             }}>
@@ -339,23 +552,23 @@ function StudioPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
             {[
-              { 
-                title: 'Kesariya', 
-                artist: 'Arijit Singh', 
+              {
+                title: 'Kesariya',
+                artist: 'Arijit Singh',
                 cover: '/presets/kesariya.jpg',
                 fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/37/1b/09/371b09fa-7e44-adbf-939e-d309cb9f3f4c/8902894363235_cover.jpg/120x120bb.jpg',
                 preset: 'kesariya.mp3'
               },
-              { 
-                title: 'Pashmina', 
-                artist: 'Amit Trivedi', 
+              {
+                title: 'Pashmina',
+                artist: 'Amit Trivedi',
                 cover: '/presets/pashmina.jpg',
                 fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
                 preset: 'pashmina.mp3'
               },
-              { 
-                title: 'Yeh Fitoor Mera', 
-                artist: 'Amit Trivedi', 
+              {
+                title: 'Yeh Fitoor Mera',
+                artist: 'Amit Trivedi',
                 cover: '/presets/yeh_fitoor_mera.jpg',
                 fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
                 preset: 'yeh_fitoor_mera.mp3'
@@ -423,11 +636,11 @@ function StudioPage() {
                   </svg>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ 
-                    fontSize: 13, 
-                    fontWeight: 600, 
-                    margin: 0, 
-                    color: 'var(--text-primary)', 
+                  <p style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    margin: 0,
+                    color: 'var(--text-primary)',
                     fontFamily: 'Inter, sans-serif',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -435,9 +648,9 @@ function StudioPage() {
                   }}>
                     {track.title}
                   </p>
-                  <p style={{ 
-                    fontSize: 11, 
-                    margin: 0, 
+                  <p style={{
+                    fontSize: 11,
+                    margin: 0,
                     color: 'var(--text-muted)',
                     fontFamily: 'Inter, sans-serif',
                     whiteSpace: 'nowrap',
@@ -450,11 +663,11 @@ function StudioPage() {
               </button>
             ))}
           </div>
-          
-          <p style={{ 
-            fontSize: 10, 
-            color: 'var(--text-muted)', 
-            fontFamily: 'Inter, sans-serif', 
+
+          <p style={{
+            fontSize: 10,
+            color: 'var(--text-muted)',
+            fontFamily: 'Inter, sans-serif',
             textAlign: 'center',
             marginTop: 10,
             opacity: 0.8
@@ -511,10 +724,10 @@ function PlayerPage() {
   }
 
   return (
-    <div style={{ 
-      height: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
+    <div style={{
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
       background: 'var(--bg)',
       overflow: 'hidden'
     }}>
@@ -526,10 +739,10 @@ function PlayerPage() {
           accuracyScore={accuracyScore}
         />
       )}
-      <div style={{ 
-        flex: 1, 
-        minHeight: 0, 
-        padding: isFullscreen ? '0px' : '8px 24px 120px', 
+      <div style={{
+        flex: 1,
+        minHeight: 0,
+        padding: isFullscreen ? '0px' : '8px 24px 120px',
         marginTop: isFullscreen ? 0 : 72,
         overflow: 'hidden',
         display: 'flex',
@@ -577,6 +790,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<HeroPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/studio" element={<StudioPage />} />
         <Route path="/player" element={<PlayerPage />} />
       </Routes>
