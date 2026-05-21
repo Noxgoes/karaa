@@ -148,7 +148,7 @@ function HeroNav({ onHowToClick, onLogoClick }) {
       artist: 'Lata Mangeshkar',
       cover: '/presets/ajeeb_dastan.jpg',
       fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a3/93/29/a39329fc-0775-6902-15f1-34444585fdf2/8902894101967_cover.jpg/120x120bb.jpg',
-      preset: 'ajib_dastan_hai_ye-lata mangeshkar.mp3'
+      preset: 'ajib.mp3'
     }
   ];
 
