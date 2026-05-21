@@ -105,8 +105,8 @@ export default function PitchCanvas() {
 
   const isMobile = windowWidth < 768;
 
-  const rowHeight = isMobile ? 160 : 220;
-  const padding = isMobile ? 12 : 20;
+  const rowHeight = isMobile ? 180 : 300;
+  const padding = isMobile ? 20 : 35;
   const hPad = isMobile ? 40 : 180;
   const svgWidth = isMobile ? 640 : 1200;
   const wordFontSize = isMobile ? '19' : '24';
@@ -296,7 +296,7 @@ export default function PitchCanvas() {
       >
         <defs>
           <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="currentColor" />
           </marker>
           <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="3" result="blur" />
@@ -344,39 +344,79 @@ export default function PitchCanvas() {
                 />
               )}
 
-              {/* ── Arrows between words ── */}
-              {line.words.map((w, i) => {
-                if (i === line.words.length - 1) return null;
-                const next = line.words[i + 1];
+              {/* ── Straight Arrow Segments connecting words ── */}
+              {line.words.length > 1 && line.words.map((w, idx) => {
+                if (idx === line.words.length - 1) return null;
+                const next = line.words[idx + 1];
+
                 const dx = next.x - w.x;
                 const dy = next.y - w.y;
-                const angle = Math.atan2(dy, dx);
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                const offset = 32;
-                if (dist < offset * 1.5) return null;
-                const x1 = w.x + Math.cos(angle) * offset;
-                const y1 = w.y + Math.sin(angle) * offset;
-                const x2 = next.x - Math.cos(angle) * offset;
-                const y2 = next.y - Math.sin(angle) * offset;
-                const arrowColor = '#121212';
+
+                // Dynamically offset start/end so arrows don't overlap typography.
+                // Standard offset works perfectly with word character length.
+                const startOffset = Math.max(32, w.word.length * 9 + 14);
+                const endOffset = Math.max(28, next.word.length * 9 + 10);
+
+                let xStart = w.x;
+                let yStart = w.y;
+                let xEnd = next.x;
+                let yEnd = next.y;
+
+                if (dist > startOffset + endOffset) {
+                  const ux = dx / dist;
+                  const uy = dy / dist;
+                  xStart = w.x + ux * startOffset;
+                  yStart = w.y + uy * startOffset;
+                  xEnd = next.x - ux * endOffset;
+                  yEnd = next.y - uy * endOffset;
+                } else {
+                  xStart = w.x + dx * 0.25;
+                  yStart = w.y + dy * 0.25;
+                  xEnd = next.x - dx * 0.25;
+                  yEnd = next.y - dy * 0.25;
+                }
+
+                const isArrowActive = currentMs >= w.startMs && currentMs < next.endMs;
+
                 return (
                   <line
-                    key={`arrow-${w.wordIndex}`}
-                    x1={x1} y1={y1} x2={x2} y2={y2}
-                    stroke={arrowColor}
-                    strokeWidth="1.5"
-                    opacity="0.4"
+                    key={`arrow-${w.wordIndex}-${next.wordIndex}`}
+                    x1={xStart}
+                    y1={yStart}
+                    x2={xEnd}
+                    y2={yEnd}
+                    stroke={isArrowActive ? "var(--text-primary)" : "var(--text-muted)"}
+                    strokeWidth={isArrowActive ? "1.8" : "1.2"}
                     markerEnd="url(#arrowhead)"
-                    style={{ transition: 'none', pointerEvents: 'none' }}
+                    style={{
+                      opacity: isArrowActive ? 0.8 : 0.28,
+                      transition: 'all 0.3s ease',
+                      pointerEvents: 'none',
+                    }}
                   />
                 );
               })}
 
               {/* ── Words ── */}
               {line.words.map((w, i) => {
-                const textColor = '#1A1A1A'; // No highlight, clean uniform solid dark text
+                const isPast = currentMs > w.endMs;
+                const isActive = currentMs >= w.startMs && currentMs < w.endMs;
+                const isFuture = currentMs < w.startMs;
+
+                let textColor = 'var(--text-muted)';
+                let scale = 1;
+                let opacity = 0.5;
+                let blur = '0px';
+
+                if (isActive) {
+                  textColor = 'var(--text-active)';
+                  scale = 1.08;
+                  opacity = 1;
+                }
+
                 const fontSize = wordFontSize;
-                const fontWeight = wordFontWeight;
+                const fontWeight = isActive ? '800' : '600';
 
                 let rotation = 0;
                 if (i < line.words.length - 1) {
@@ -390,7 +430,7 @@ export default function PitchCanvas() {
                 return (
                   <g
                     key={`word-${w.wordIndex}`}
-                    transform={`translate(${w.x}, ${w.y}) rotate(${rotation})`}
+                    transform={`translate(${w.x}, ${w.y}) rotate(${rotation}) scale(${scale})`}
                     style={{
                       transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
                       pointerEvents: 'none'
@@ -400,7 +440,7 @@ export default function PitchCanvas() {
                       style={{
                         animation: `fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`,
                         animationDelay: `${Math.min(2, w.wordIndex * 0.05)}s`,
-                        opacity: 0,
+                        opacity,
                       }}
                     >
                       <text
@@ -410,10 +450,10 @@ export default function PitchCanvas() {
                         fill={textColor}
                         fontSize={fontSize}
                         fontWeight={fontWeight}
-                        fontFamily="'Playfair Display', Georgia, serif"
+                        fontFamily="'Inter', sans-serif"
                         style={{
                           transition: 'all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                          filter: 'none',
+                          filter: isActive ? 'url(#activeGlow)' : `blur(${blur})`,
                           userSelect: 'none',
                           letterSpacing: '-0.02em',
                         }}

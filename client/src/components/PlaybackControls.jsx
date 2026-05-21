@@ -95,30 +95,32 @@ export default function PlaybackControls() {
           seek(pct * duration);
         }}
         title="Click to seek"
+        style={{
+          background: 'rgba(27, 26, 23, 0.15)', // Muted light progress track
+        }}
       >
-        <div className="player-progress-fill" style={{ width: `${progress}%` }}>
+        <div className="player-progress-fill" style={{ width: `${progress}%`, background: 'var(--text-primary)' }}>
           {/* Thumb dot */}
           <div style={{
             position: 'absolute', right: -5, top: '50%', transform: 'translateY(-50%)',
             width: 11, height: 11, borderRadius: '50%',
-            background: 'var(--player-text)',
-            boxShadow: '0 0 0 2px rgba(245,240,232,0.2)',
+            background: 'var(--text-primary)',
+            boxShadow: '0 0 0 2px rgba(27,26,23,0.12)',
           }} />
         </div>
       </div>
-
-      {/* Controls row */}
+ 
       {/* Controls row */}
       <div className="player-controls-row">
         <div className="player-controls-primary">
           {/* Time */}
           <span style={{
-            fontSize: 12, fontFamily: 'monospace', color: '#6B6560',
+            fontSize: 12, fontFamily: 'monospace', color: 'var(--text-muted)',
             minWidth: 90, letterSpacing: '0.04em',
           }}>
             {formatTime(currentTime)} / {formatTime(duration)}
           </span>
-
+ 
           {/* Transport buttons */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             {/* Restart */}
@@ -128,25 +130,25 @@ export default function PlaybackControls() {
               title="Restart"
               style={{
                 width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'transparent', border: 'none', color: '#6B6560', cursor: 'pointer',
+                background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer',
                 borderRadius: '50%', transition: 'color 0.2s',
               }}
-              onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
-              onMouseLeave={e => e.currentTarget.style.color = '#6B6560'}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
             >
               <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/>
               </svg>
             </button>
-
+ 
             {/* Play / Pause */}
             <button
               id="player-play-pause"
               onClick={togglePlayback}
               style={{
                 width: 44, height: 44, borderRadius: '50%',
-                background: 'var(--player-text)', border: 'none',
-                color: 'var(--player-bg)',
+                background: 'var(--text-primary)', border: 'none',
+                color: 'var(--bg)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 cursor: 'pointer',
                 transition: 'transform 0.15s, background 0.2s',
@@ -165,7 +167,7 @@ export default function PlaybackControls() {
                 </svg>
               )}
             </button>
-
+ 
             {/* Stop */}
             <button
               id="player-stop"
@@ -173,18 +175,18 @@ export default function PlaybackControls() {
               title="Stop"
               style={{
                 width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'transparent', border: 'none', color: '#6B6560', cursor: 'pointer',
+                background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer',
                 borderRadius: '50%', transition: 'color 0.2s',
               }}
-              onMouseEnter={e => e.currentTarget.style.color = '#F5F0E8'}
-              onMouseLeave={e => e.currentTarget.style.color = '#6B6560'}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
             >
               <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
               </svg>
             </button>
           </div>
-
+ 
           {/* Fullscreen Toggle */}
           <button
             id="player-fullscreen"
@@ -198,22 +200,22 @@ export default function PlaybackControls() {
               justifyContent: 'center',
               padding: 0,
               lineHeight: 0,
-              background: 'rgba(255,255,255,0.06)',
-              border: '0.5px solid rgba(255,255,255,0.1)',
-              color: '#F5F0E8',
+              background: 'rgba(27, 26, 23, 0.05)',
+              border: '0.5px solid rgba(27, 26, 23, 0.1)',
+              color: 'var(--text-primary)',
               cursor: 'pointer',
               borderRadius: '50%',
               transition: 'all 0.2s',
               outline: 'none',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'var(--player-text)';
-              e.currentTarget.style.color = 'var(--player-bg)';
+              e.currentTarget.style.background = 'var(--text-primary)';
+              e.currentTarget.style.color = 'var(--bg)';
               e.currentTarget.style.transform = 'scale(1.05)';
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-              e.currentTarget.style.color = '#F5F0E8';
+              e.currentTarget.style.background = 'rgba(27, 26, 23, 0.05)';
+              e.currentTarget.style.color = 'var(--text-primary)';
               e.currentTarget.style.transform = 'none';
             }}
           >
@@ -228,13 +230,13 @@ export default function PlaybackControls() {
             )}
           </button>
         </div>
-
+ 
         <div className="player-controls-secondary">
           {/* Speed selector */}
           <div style={{
             display: 'flex',
-            background: 'rgba(255,255,255,0.06)',
-            border: '0.5px solid rgba(255,255,255,0.1)',
+            background: 'rgba(27, 26, 23, 0.05)',
+            border: '0.5px solid rgba(27, 26, 23, 0.1)',
             borderRadius: 'var(--radius-pill)',
             padding: 3,
             gap: 2,
@@ -248,8 +250,8 @@ export default function PlaybackControls() {
                   padding: '5px 14px',
                   borderRadius: 'var(--radius-pill)',
                   border: 'none',
-                  background: playbackRate === rate ? 'var(--player-text)' : 'transparent',
-                  color: playbackRate === rate ? 'var(--player-bg)' : '#6B6560',
+                  background: playbackRate === rate ? 'var(--text-primary)' : 'transparent',
+                  color: playbackRate === rate ? 'var(--bg)' : 'var(--text-muted)',
                   fontSize: 12,
                   fontFamily: 'Inter, sans-serif',
                   fontWeight: 500,
@@ -261,22 +263,22 @@ export default function PlaybackControls() {
               </button>
             ))}
           </div>
-
+ 
           {/* ── Sync offset nudge ── */}
           <div style={{
             display: 'flex', alignItems: 'center', gap: 10,
-            background: 'rgba(255,255,255,0.06)',
-            border: '0.5px solid rgba(255,255,255,0.1)',
+            background: 'rgba(27, 26, 23, 0.05)',
+            border: '0.5px solid rgba(27, 26, 23, 0.1)',
             borderRadius: 'var(--radius-pill)',
             padding: '3px 12px 3px 10px',
           }}>
-            <span style={{ fontSize: 10, color: '#6B6560', fontFamily: 'Inter, sans-serif', whiteSpace: 'nowrap', letterSpacing: '0.06em', fontWeight: 600 }}>
+            <span style={{ fontSize: 10, color: 'var(--text-muted)', fontFamily: 'Inter, sans-serif', whiteSpace: 'nowrap', letterSpacing: '0.06em', fontWeight: 600 }}>
               SYNC
             </span>
             <button
               id="sync-earlier"
               onClick={() => setSyncOffsetMs(Math.max(-3000, syncOffsetMs - 100))}
-              style={{ background: 'none', border: 'none', color: '#6B6560', cursor: 'pointer', fontSize: 18 }}
+              style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: 18 }}
             >−</button>
             
             <input
@@ -288,22 +290,22 @@ export default function PlaybackControls() {
               onChange={e => setSyncOffsetMs(Number(e.target.value))}
               style={{ 
                 width: 80, 
-                accentColor: 'var(--player-text)',
+                accentColor: 'var(--text-primary)',
                 cursor: 'pointer',
                 height: 4
               }}
             />
-
+ 
             <button
               id="sync-later"
               onClick={() => setSyncOffsetMs(Math.min(3000, syncOffsetMs + 100))}
-              style={{ background: 'none', border: 'none', color: '#6B6560', cursor: 'pointer', fontSize: 18 }}
+              style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: 18 }}
             >+</button>
-
+ 
             <span
               id="sync-offset-display"
               style={{
-                fontSize: 11, fontFamily: 'monospace', color: syncOffsetMs === 0 ? '#6B6560' : '#F5F0E8',
+                fontSize: 11, fontFamily: 'monospace', color: syncOffsetMs === 0 ? 'var(--text-muted)' : 'var(--text-primary)',
                 minWidth: 52, textAlign: 'center', cursor: 'pointer', fontWeight: 600
               }}
               title="Click to reset"
@@ -312,22 +314,22 @@ export default function PlaybackControls() {
               {syncOffsetMs >= 0 ? '+' : ''}{syncOffsetMs}ms
             </span>
           </div>
-
+ 
           {/* Accuracy chip */}
           {accuracyScore !== null && (
             <div style={{
               display: 'flex', alignItems: 'center', gap: 8,
-              background: 'rgba(255,255,255,0.06)',
-              border: '0.5px solid rgba(255,255,255,0.1)',
+              background: 'rgba(27, 26, 23, 0.05)',
+              border: '0.5px solid rgba(27, 26, 23, 0.1)',
               borderRadius: 'var(--radius-pill)',
               padding: '6px 16px',
             }}>
-              <span style={{ fontSize: 11, color: '#6B6560', fontFamily: 'Inter, sans-serif', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+              <span style={{ fontSize: 11, color: 'var(--text-muted)', fontFamily: 'Inter, sans-serif', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
                 Accuracy
               </span>
               <span style={{
                 fontSize: 15, fontWeight: 700, fontFamily: 'Inter, sans-serif',
-                color: accuracyScore >= 80 ? '#1D9E75' : accuracyScore >= 50 ? '#D4A017' : '#D85A30',
+                color: accuracyScore >= 80 ? '#108A61' : accuracyScore >= 50 ? '#D49B00' : '#C84A24',
               }}>
                 {accuracyScore}%
               </span>
