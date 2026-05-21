@@ -409,21 +409,21 @@ function ContactPage() {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <a href="mailto:hello@kara.app" style={{
+              <a href="mailto:itsnoberoi@gmail.com" style={{
                 display: 'flex', alignItems: 'center', gap: '16px', textDecoration: 'none',
                 color: 'var(--text-primary)', background: 'var(--bg)', padding: '16px 20px', borderRadius: '16px', border: '0.5px solid var(--border)'
               }}>
                 <span style={{ fontSize: '20px' }}>✉️</span>
                 <span style={{ fontSize: '15px', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>hello@kara.app</span>
               </a>
-              <a href="https://github.com/indiedev" target="_blank" rel="noreferrer" style={{
+              <a href="https://github.com/noxgoes" target="_blank" rel="noreferrer" style={{
                 display: 'flex', alignItems: 'center', gap: '16px', textDecoration: 'none',
                 color: 'var(--text-primary)', background: 'var(--bg)', padding: '16px 20px', borderRadius: '16px', border: '0.5px solid var(--border)'
               }}>
                 <span style={{ fontSize: '20px' }}>🐙</span>
                 <span style={{ fontSize: '15px', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>GitHub</span>
               </a>
-              <a href="https://twitter.com/indiedev" target="_blank" rel="noreferrer" style={{
+              <a href="https://twitter.com/noma_exe" target="_blank" rel="noreferrer" style={{
                 display: 'flex', alignItems: 'center', gap: '16px', textDecoration: 'none',
                 color: 'var(--text-primary)', background: 'var(--bg)', padding: '16px 20px', borderRadius: '16px', border: '0.5px solid var(--border)'
               }}>
@@ -453,10 +453,6 @@ function HeroPage() {
       <section className="kara-hero" aria-label="Hero">
         <AlbumScatter />
         <div className="hero-center fade-in-up">
-          <div className="hero-badge fade-in-up fade-in-up-d1">
-            <span className="badge-star">✦</span>
-            Sing. Feel. Express.
-          </div>
           <h1 className="hero-title fade-in-up fade-in-up-d2">
             Your stage.<br />Your song.
           </h1>
