@@ -6,6 +6,7 @@ import path from 'path';
 import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+import { transliterate } from 'transliteration';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,7 +54,15 @@ router.post('/', upload.single('audio'), async (req, res) => {
     fs.unlinkSync(tempFilePath);
     tempFilePath = null;
 
-    console.log(`[GROQ] Transcription completed successfully.`);
+    console.log(`[GROQ] Transcription completed successfully. Applying local romanization...`);
+
+    if (transcription.words && transcription.words.length > 0) {
+      transcription.words.forEach(w => {
+        w.romanizedWord = transliterate(w.word); 
+      });
+      console.log(`[GROQ] Local romanization applied successfully.`);
+    }
+
     res.json(transcription);
   } catch (err) {
     console.error('Groq transcription error details:', err);

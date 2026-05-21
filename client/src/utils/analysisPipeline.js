@@ -53,6 +53,7 @@ export async function runAnalysisPipeline({ navigate, extractPitch }) {
       wordsInCurrentLine++;
       return {
         word: w.word.trim(),
+        romanizedWord: w.romanizedWord ? w.romanizedWord.trim() : null,
         lineIndex: currentLine,
         wordIndex: index,
         startMs: w.start * 1000,

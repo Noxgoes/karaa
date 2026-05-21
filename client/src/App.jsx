@@ -144,11 +144,11 @@ function HeroNav({ onHowToClick, onLogoClick }) {
       preset: 'pashmina.mp3'
     },
     {
-      title: 'Yeh Fitoor Mera',
-      artist: 'Amit Trivedi',
-      cover: '/presets/yeh_fitoor_mera.jpg',
-      fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
-      preset: 'yeh_fitoor_mera.mp3'
+      title: 'Ajib Dastan Hai Yeh',
+      artist: 'Lata Mangeshkar',
+      cover: '/presets/ajeeb_dastan.jpg',
+      fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a3/93/29/a39329fc-0775-6902-15f1-34444585fdf2/8902894101967_cover.jpg/120x120bb.jpg',
+      preset: 'ajib_dastan_hai_ye-lata mangeshkar.mp3'
     }
   ];
 
@@ -227,6 +227,8 @@ function StudioNav({ onHowToClick, onHome }) {
 
 function PlayerNav({ song, artist, onExit, accuracyScore }) {
   const albumArt = useAppStore(state => state.albumArt);
+  const isRomanized = useAppStore(state => state.isRomanized);
+  const toggleRomanized = useAppStore(state => state.toggleRomanized);
 
   return (
     <nav
@@ -237,6 +239,28 @@ function PlayerNav({ song, artist, onExit, accuracyScore }) {
         <KaraLogo onClick={onExit} />
 
         <div className="player-nav-actions">
+          <button
+            onClick={toggleRomanized}
+            style={{
+              padding: '9px 16px',
+              borderRadius: 'var(--radius-pill)',
+              border: '1px solid var(--border)',
+              background: 'var(--surface)',
+              color: 'var(--text-primary)',
+              fontSize: 13,
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 500,
+              cursor: 'pointer',
+              display: 'flex', alignItems: 'center', gap: 6,
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#E0D8CC'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'var(--surface)'; }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7V4h16v3" /><path d="M9 20h6" /><path d="M12 4v16" /></svg>
+            {isRomanized ? 'Show Native Script' : 'Romanize'}
+          </button>
+
           <button
             className="nav-how-to-use-btn"
             onClick={() => useAppStore.setState({ isHowToOpen: true })}
@@ -563,11 +587,11 @@ function StudioPage() {
                 preset: 'pashmina.mp3'
               },
               {
-                title: 'Yeh Fitoor Mera',
-                artist: 'Amit Trivedi',
-                cover: '/presets/yeh_fitoor_mera.jpg',
-                fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/b8/1c/b3/b81cb301-8bf8-d621-e034-789a7bb7d5d7/8902894356077_cover.jpg/120x120bb.jpg',
-                preset: 'yeh_fitoor_mera.mp3'
+                title: 'Ajeeb Dastan Hai Yeh',
+                artist: 'Lata Mangeshkar',
+                cover: '/presets/ajeeb_dastan.jpg',
+                fallbackCover: 'https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a3/93/29/a39329fc-0775-6902-15f1-34444585fdf2/8902894101967_cover.jpg/120x120bb.jpg',
+                preset: 'ajib_dastan_hai_ye-lata mangeshkar.mp3'
               }
             ].map((track, i) => (
               <button
@@ -693,7 +717,11 @@ function PlayerPage() {
       window.__karaAbortAnalysis = null;
     }
     useAppStore.setState({
+      song: '',
+      artist: '',
+      lyrics: [],
       alignedLyrics: [],
+      syncedLyrics: null,
       isPlaying: false,
       audioBuffer: null,
       isAnalyzing: false,
@@ -702,6 +730,14 @@ function PlayerPage() {
       currentTime: 0,
       albumArt: null,
       syncOffsetMs: 0,
+      error: null,
+      audioFile: null,
+      youtubeUrl: '',
+      presetPath: '',
+      micPitch: 0,
+      micMidi: 0,
+      pitchHistory: [],
+      accuracyScore: null,
     });
     navigate('/studio');
   }, [stop, navigate]);

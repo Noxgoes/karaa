@@ -33,6 +33,8 @@ export const useAppStore = create((set, get) => ({
   accuracyScore: null,
   isFullscreen: false,
   setIsFullscreen: (isFullscreen) => set({ isFullscreen }),
+  isRomanized: false,
+  toggleRomanized: () => set(state => ({ isRomanized: !state.isRomanized })),
   
   // Audio source state for Studio upload/youtube
   audioSourceTab: 'upload',

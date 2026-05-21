@@ -13,6 +13,7 @@ export default function PitchCanvas() {
   const isMicActive = useAppStore(state => state.isMicActive);
   const isAnalyzing = useAppStore(state => state.isAnalyzing);
   const isFullscreen = useAppStore(state => state.isFullscreen);
+  const isRomanized = useAppStore(state => state.isRomanized);
   const isPlaying = useAppStore(state => state.isPlaying);
   const audioBuffer = useAppStore(state => state.audioBuffer);
   const lastSeekTime = useAppStore(state => state.lastSeekTime);
@@ -353,10 +354,13 @@ export default function PitchCanvas() {
                 const dy = next.y - w.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
+                const displayWord = isRomanized && w.romanizedWord ? w.romanizedWord : w.word;
+                const nextDisplayWord = isRomanized && next.romanizedWord ? next.romanizedWord : next.word;
+
                 // Dynamically offset start/end so arrows don't overlap typography.
                 // Standard offset works perfectly with word character length.
-                const startOffset = Math.max(32, w.word.length * 9 + 14);
-                const endOffset = Math.max(28, next.word.length * 9 + 10);
+                const startOffset = Math.max(32, displayWord.length * 9 + 14);
+                const endOffset = Math.max(28, nextDisplayWord.length * 9 + 10);
 
                 let xStart = w.x;
                 let yStart = w.y;
@@ -458,7 +462,7 @@ export default function PitchCanvas() {
                           letterSpacing: '-0.02em',
                         }}
                       >
-                        {w.word}
+                        {isRomanized && w.romanizedWord ? w.romanizedWord : w.word}
                       </text>
                     </g>
                   </g>

@@ -19,6 +19,7 @@
     "form-data": "^4.0.5",
     "groq-sdk": "^1.2.0",
     "multer": "^2.1.1",
+    "transliteration": "^2.6.1",
     "yt-dlp-wrap": "^2.3.3"
   },
   "devDependencies": {

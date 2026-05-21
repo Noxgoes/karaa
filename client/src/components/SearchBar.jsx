@@ -54,7 +54,21 @@ export default function SearchBar() {
                 className="kara-input"
                 style={{ paddingLeft: 38, width: '100%' }}
                 value={song}
-                onChange={e => setSong(e.target.value)}
+                onChange={e => {
+                  const val = e.target.value;
+                  const separator = val.includes(' - ') ? ' - ' 
+                                  : val.includes(' — ') ? ' — ' 
+                                  : val.includes(' | ') ? ' | ' 
+                                  : null;
+
+                  if (separator && !artist) {
+                    const parts = val.split(separator);
+                    setSong(parts[0].trim());
+                    setArtist(parts.slice(1).join(separator).trim());
+                  } else {
+                    setSong(val);
+                  }
+                }}
                 required
                 autoComplete="off"
               />
